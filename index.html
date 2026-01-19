@@ -4,348 +4,208 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Joyeux Anniversaire Cassandra</title>
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700&family=Dancing+Script:wght@600&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Montserrat:wght@300;500;700&display=swap" rel="stylesheet">
     
     <style>
-        /* --- VARIABLES & RESET --- */
+        /* --- CONFIGURATION DE BASE --- */
         :root {
-            /* Palette de couleurs "Romance Premium" */
-            --bg-gradient-start: #ffe6ea; /* Rose très pâle */
-            --bg-gradient-end: #ffc5d3;   /* Rose plus soutenu */
-            --text-dark: #5e3a44;         /* Marron/Bordeaux doux pour le texte */
-            --accent-rose: #d6336c;       /* Rose intense */
-            --accent-gold: #d4af37;       /* Or élégant */
-            --card-bg: rgba(255, 255, 255, 0.7); /* Effet verre dépoli */
-            
-            --title-font: 'Cinzel Decorative', cursive;
-            --handwriting-font: 'Dancing Script', cursive;
-            --body-font: 'Montserrat', sans-serif;
+            --bg-pink: #ffe6ea;      /* Rose fond */
+            --bg-dark-pink: #ffc2d1; /* Rose plus foncé */
+            --text-color: #6d071a;   /* Bordeaux pour une lecture parfaite */
+            --accent-red: #e63946;   /* Rouge Cœur */
+            --gold: #d4af37;         /* Or */
+            --white-glass: rgba(255, 255, 255, 0.85); /* Fond blanc transparent sous le texte */
         }
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
 
         body {
-            /* Fond dégradé animé doux */
-            background: linear-gradient(135deg, var(--bg-gradient-start), var(--bg-gradient-end), #fff0f5);
-            background-size: 400% 400%;
-            animation: softGradient 15s ease infinite;
-            color: var(--text-dark);
-            font-family: var(--body-font);
-            overflow-x: hidden;
+            /* Fond dégradé rose doux */
+            background: linear-gradient(to bottom right, var(--bg-pink), var(--bg-dark-pink));
             min-height: 100vh;
+            font-family: 'Montserrat', sans-serif;
+            color: var(--text-color);
+            overflow-x: hidden; /* Empêche le scroll horizontal */
             display: flex;
             flex-direction: column;
             align-items: center;
-            position: relative;
         }
 
-        @keyframes softGradient {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
-        }
-
-        /* --- ANIMATION DE FOND: PLUIE DE PÉTALES ET CŒURS --- */
-        .falling-elements {
+        /* --- EFFET DE PLUIE DE PÉTALES (ARRIÈRE-PLAN) --- */
+        .falling-container {
             position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            z-index: -1;
-            overflow: hidden;
+            top: 0; left: 0; width: 100%; height: 100%;
+            pointer-events: none; /* Pour cliquer au travers */
+            z-index: 0;
         }
-
         .falling-item {
             position: absolute;
-            top: -10%;
-            font-size: 1.5rem;
+            top: -50px;
+            font-size: 24px;
+            animation: fall linear infinite;
             opacity: 0.6;
-            animation: fallDown linear infinite;
+        }
+        @keyframes fall {
+            to { transform: translateY(110vh) rotate(360deg); }
         }
 
-        /* Différents styles pour les éléments qui tombent */
-        .petal-pink { color: #ffb6c1; }
-        .petal-red { color: var(--accent-rose); }
-        .heart-gold { color: var(--accent-gold); font-size: 1rem; }
-
-        @keyframes fallDown {
-            0% { transform: translateY(0) rotate(0deg) translateX(0); opacity: 0; }
-            10% { opacity: 0.7; }
-            90% { opacity: 0.7; }
-            100% { transform: translateY(110vh) rotate(360deg) translateX(50px); opacity: 0; }
-        }
-
-        /* --- CONTENEUR PRINCIPAL --- */
-        .container {
-            width: 90%;
-            max-width: 900px;
-            margin: 5vh auto;
-            text-align: center;
-            z-index: 2;
-            padding-bottom: 50px;
-        }
-
-        /* --- HEADER: ANNIVERSAIRE --- */
-        .romance-header {
-            margin-bottom: 40px;
+        /* --- CONTENU PRINCIPAL --- */
+        .main-wrapper {
             position: relative;
-            animation: fadeInDown 1.5s ease-out;
+            z-index: 10;
+            width: 90%;
+            max-width: 800px;
+            margin-top: 50px;
+            margin-bottom: 50px;
+            text-align: center;
         }
 
-        .intro-sub {
-            font-family: var(--body-font);
-            font-size: 1rem;
-            color: var(--accent-gold);
+        /* --- HEADER --- */
+        h1.intro {
+            font-size: 1.2rem;
             text-transform: uppercase;
             letter-spacing: 3px;
-            font-weight: 600;
-            margin-bottom: 15px;
-            display: block;
+            color: var(--gold);
+            font-weight: 700;
+            margin-bottom: 10px;
         }
 
-        .main-title {
-            font-family: var(--title-font);
-            font-size: 3.5rem;
+        .name-title {
+            font-family: 'Great Vibes', cursive;
+            font-size: 5rem;
+            color: var(--accent-red);
+            text-shadow: 2px 2px 0px rgba(255, 255, 255, 0.5);
             line-height: 1.2;
-            color: var(--accent-rose);
-            text-shadow: 2px 2px 4px rgba(214, 51, 108, 0.2);
+            margin-bottom: 30px;
+            animation: heartbeat 3s infinite ease-in-out;
         }
 
-        .cassandra-name {
-            font-family: var(--handwriting-font);
-            font-size: 6rem;
-            display: block;
-            color: var(--accent-rose);
-            margin-top: -15px;
-            text-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
-            position: relative;
-        }
-
-        /* Petit détail floral sous le nom */
-        .cassandra-name::after {
-            content: '❧';
-            display: block;
-            font-size: 2rem;
-            color: var(--accent-gold);
-            margin-top: -20px;
-        }
-
-        @keyframes fadeInDown {
-            from { opacity: 0; transform: translateY(-30px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        /* --- LA DÉCLARATION CENTRALE --- */
-        .central-declaration {
-            background: var(--card-bg);
-            backdrop-filter: blur(10px);
-            border: 2px solid rgba(255, 255, 255, 0.5);
-            border-radius: 30px 0 30px 0;
+        /* --- LA LETTRE D'AMOUR (CARTE CENTRALE) --- */
+        .love-letter {
+            background-color: var(--white-glass);
             padding: 40px;
-            box-shadow: 0 15px 35px rgba(214, 51, 108, 0.15);
-            margin-bottom: 60px;
-            position: relative;
-            animation: fadeInUp 1.5s ease-out 0.5s backwards;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(109, 7, 26, 0.15);
+            border: 2px solid #fff;
+            margin-bottom: 50px;
         }
 
-        .declaration-text {
-            font-family: var(--body-font);
-            font-size: 1.2rem;
+        .love-text {
+            font-size: 1.3rem;
             line-height: 1.8;
-            font-weight: 400;
-            color: var(--text-dark);
-        }
-        
-        .highlight {
-            font-family: var(--handwriting-font);
-            font-size: 1.8rem;
-            color: var(--accent-rose);
-            font-weight: normal;
-        }
-
-        /* --- CŒUR FLORAL ANIMÉ CENTRAL --- */
-        .blooming-heart-container {
-            margin: 30px 0 50px 0;
-            position: relative;
-            height: 150px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            animation: pulseGold 3s infinite ease-in-out;
-        }
-
-        /* Création d'un cœur stylisé en CSS pur qui ressemble à une fleur */
-        .blooming-heart {
-            position: relative;
-            width: 100px;
-            height: 90px;
-        }
-        .blooming-heart::before, .blooming-heart::after {
-            content: "";
-            position: absolute;
-            left: 50px;
-            top: 0;
-            width: 50px;
-            height: 80px;
-            background: radial-gradient(circle at 30% 30%, #ff7a9e, var(--accent-rose));
-            border-radius: 50px 50px 0 0;
-            transform: rotate(-45deg);
-            transform-origin: 0 100%;
-            box-shadow: 0 0 20px rgba(214, 51, 108, 0.4);
-        }
-        .blooming-heart::after {
-            left: 0;
-            transform: rotate(45deg);
-            transform-origin: 100% 100%;
-        }
-
-        @keyframes pulseGold {
-            0%, 100% { transform: scale(1); filter: drop-shadow(0 0 5px var(--accent-gold)); }
-            50% { transform: scale(1.1); filter: drop-shadow(0 0 15px var(--accent-gold)); }
-        }
-
-        /* --- GRILLE DES PENSÉES D'AMOUR (Cartes) --- */
-        .love-notes-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 30px;
-            margin-top: 30px;
-        }
-
-        .love-card {
-            background: rgba(255, 255, 255, 0.85);
-            border-radius: 15px;
-            padding: 25px;
-            text-align: center;
-            transition: all 0.4s ease;
-            position: relative;
-            overflow: hidden;
-            border: 1px solid rgba(212, 175, 55, 0.3); /* Bordure or subtile */
-            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
-            opacity: 0;
-            animation: fadeInUp 1s ease-out forwards;
-        }
-
-        /* Délais d'apparition pour les cartes */
-        .love-card:nth-child(1) { animation-delay: 0.8s; }
-        .love-card:nth-child(2) { animation-delay: 1.0s; }
-        .love-card:nth-child(3) { animation-delay: 1.2s; }
-        .love-card:nth-child(4) { animation-delay: 1.4s; }
-
-        .love-card:hover {
-            transform: translateY(-15px) scale(1.02);
-            box-shadow: 0 20px 40px rgba(214, 51, 108, 0.2);
-            border-color: var(--accent-rose);
-        }
-
-        .card-icon {
-            font-size: 3rem;
-            margin-bottom: 15px;
-            display: inline-block;
-            background: linear-gradient(to bottom right, var(--accent-rose), var(--accent-gold));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-        
-        .card-text {
-            font-family: var(--body-font);
             font-weight: 500;
-            font-size: 1.05rem;
-            color: var(--text-dark);
-            line-height: 1.6;
-            font-style: italic;
         }
 
-        @keyframes fadeInUp {
-            from { opacity: 0; transform: translateY(40px); }
-            to { opacity: 1; transform: translateY(0); }
+        .highlight {
+            color: var(--accent-red);
+            font-weight: bold;
+            font-family: 'Great Vibes', cursive;
+            font-size: 2rem;
+            display: block;
+            margin: 15px 0;
+        }
+
+        /* --- GRILLE DES MESSAGES --- */
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 20px;
+        }
+
+        .mini-card {
+            background: #fff;
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            transition: transform 0.3s ease;
+            border-bottom: 4px solid var(--gold);
+        }
+        .mini-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .icon { font-size: 2.5rem; margin-bottom: 10px; display: block; }
+        
+        .card-msg {
+            font-size: 1rem;
+            color: #555;
+            font-style: italic;
         }
 
         /* --- FOOTER --- */
         footer {
-            margin-top: 80px;
-            margin-bottom: 30px;
-            font-family: var(--body-font);
+            margin-top: 50px;
             font-size: 0.9rem;
-            color: var(--text-dark);
-            animation: fadeInDown 1.5s ease-out 1.8s backwards;
-        }
-        
-        .final-signature {
-             font-family: var(--handwriting-font);
-             font-size: 2.5rem;
-             color: var(--accent-rose);
-             margin-top: 10px;
+            color: var(--text-color);
+            padding-bottom: 20px;
         }
 
-        /* --- RESPONSIVE --- */
-        @media (max-width: 768px) {
-            .main-title { font-size: 2.5rem; }
-            .cassandra-name { font-size: 4.5rem; }
-            .central-declaration { padding: 25px; border-radius: 20px; }
-            .declaration-text { font-size: 1.1rem; }
+        /* --- ANIMATIONS SIMPLES --- */
+        @keyframes heartbeat {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
         }
-    </media>
+
+        /* Responsive Mobile */
+        @media (max-width: 600px) {
+            .name-title { font-size: 3.5rem; }
+            .love-text { font-size: 1.1rem; }
+        }
+    </style>
 </head>
 <body>
 
-    <div class="falling-elements">
-        <div class="falling-item petal-pink" style="left: 10%; animation-duration: 10s; animation-delay: 0s;">🌸</div>
-        <div class="falling-item petal-red" style="left: 25%; animation-duration: 12s; animation-delay: 2s; font-size: 1rem;">🌹</div>
-        <div class="falling-item heart-gold" style="left: 40%; animation-duration: 15s; animation-delay: 5s;">❤</div>
-        <div class="falling-item petal-pink" style="left: 60%; animation-duration: 9s; animation-delay: 1s;">🌸</div>
-        <div class="falling-item petal-red" style="left: 75%; animation-duration: 14s; animation-delay: 3s; font-size: 1.2rem;">🌹</div>
-        <div class="falling-item heart-gold" style="left: 90%; animation-duration: 11s; animation-delay: 7s;">❤</div>
-        <div class="falling-item petal-pink" style="left: 5%; animation-duration: 13s; animation-delay: 4s; font-size: 0.8rem;">🌸</div>
-        <div class="falling-item petal-red" style="left: 50%; animation-duration: 16s; animation-delay: 6s;">🌹</div>
+    <div class="falling-container">
+        <div class="falling-item" style="left: 10%; animation-duration: 8s; color: #ff8fa3;">🌸</div>
+        <div class="falling-item" style="left: 30%; animation-duration: 12s; color: #d4af37;">❤</div>
+        <div class="falling-item" style="left: 50%; animation-duration: 10s; color: #e63946;">🌹</div>
+        <div class="falling-item" style="left: 70%; animation-duration: 15s; color: #ff8fa3;">🌸</div>
+        <div class="falling-item" style="left: 90%; animation-duration: 9s; color: #e63946;">❤</div>
+        <div class="falling-item" style="left: 20%; animation-duration: 11s; animation-delay: 2s; color: #d4af37;">✨</div>
+        <div class="falling-item" style="left: 60%; animation-duration: 13s; animation-delay: 1s; color: #ff8fa3;">🌹</div>
     </div>
 
+    <div class="main-wrapper">
+        
+        <h1 class="intro">À l'amour de ma vie</h1>
+        <div class="name-title">Joyeux Anniversaire<br>Cassandra</div>
 
-    <div class="container">
-        <header class="romance-header">
-            <span class="intro-sub">Mon éternelle inspiration</span>
-            <h1 class="main-title">Joyeux Anniversaire</h1>
-            <span class="cassandra-name">Cassandra</span>
-        </header>
+        <div style="font-size: 4rem; margin-bottom: 30px; animation: heartbeat 1.5s infinite;">
+            💖
+        </div>
 
-        <div class="central-declaration">
-            <p class="declaration-text">
-                Mon amour, en ce jour si précieux où le monde t'a accueillie, mon cœur ne fait que confirmer ce qu'il murmure chaque seconde : tu es mon miracle. Il n'y a pas de logique, pas d'équation pour expliquer la force de ce que je ressens pour toi. C'est une évidence, pure et absolue. <span class="highlight">Tu as transformé mon existence en une œuvre d'art</span>, colorant mes jours gris de ton rire et apaisant mes tempêtes par ta simple présence. Je t'aime d'un amour qui dépasse les mots, un amour inconditionnel et infini.
+        <div class="love-letter">
+            <p class="love-text">
+                Mon amour,
+                <br><br>
+                Aujourd'hui n'est pas un jour comme les autres, c'est le jour où le monde est devenu plus beau parce que tu y es arrivée.
+                <br><br>
+                <span class="highlight">Tu es mon évidence.</span>
+                <br>
+                Il n'y a pas de mots assez puissants dans aucune langue pour décrire ce que tu fais battre en moi. Tu es la douceur de mes matins, la force de mes journées et le rêve de mes nuits. Avec toi, chaque instant devient une éternité de bonheur.
+                <br><br>
+                Je t'aime plus que tout.
             </p>
         </div>
 
-        <div class="blooming-heart-container">
-            <div class="blooming-heart"></div>
-        </div>
-
-        <div class="love-notes-grid">
-            <div class="love-card">
-                <div class="card-icon">✨</div>
-                <p class="card-text">"Ta beauté n'est pas seulement dans ton regard, elle est dans la lumière que tu apportes à tout ce que tu touches. Tu es l'éclat de ma vie."</p>
+        <div class="cards-grid">
+            <div class="mini-card">
+                <span class="icon">✨</span>
+                <p class="card-msg">"Ton sourire est la seule lumière dont j'ai besoin pour avancer."</p>
             </div>
-            <div class="love-card">
-                <div class="card-icon">🌹</div>
-                <p class="card-text">"Comme une rose unique dans un jardin infini, tu es rare, précieuse et tu embaumes mon âme de bonheur chaque jour."</p>
+            <div class="mini-card">
+                <span class="icon">🌹</span>
+                <p class="card-msg">"Tu es ma fleur rare, précieuse et magnifique, que je protégerai toujours."</p>
             </div>
-            <div class="love-card">
-                <div class="card-icon">⏳</div>
-                <p class="card-text">"Le temps s'arrête quand je suis avec toi. Chaque instant à tes côtés est une éternité de douceur que je veux revivre à jamais."</p>
-            </div>
-            <div class="love-card">
-                <div class="card-icon">🔐</div>
-                <p class="card-text">"Tu détiens la clé de tout ce que je suis. Mon passé t'attendait, mon présent t'appartient, et mon futur ne s'écrit qu'avec toi."</p>
+            <div class="mini-card">
+                <span class="icon">🔐</span>
+                <p class="card-msg">"Tu as la clé de mon cœur, aujourd'hui et pour l'éternité."</p>
             </div>
         </div>
 
         <footer>
-            <p>Aujourd'hui et pour tous les lendemains.</p>
-            <p class="final-signature">Je t'aime éperdument.</p>
+            <p>Codé avec tout mon cœur pour toi.</p>
+            <p style="font-family: 'Great Vibes', cursive; font-size: 2rem; margin-top: 10px; color: var(--accent-red);">Je t'aime à la folie.</p>
         </footer>
 
     </div>
