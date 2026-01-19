@@ -1,115 +1,333 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Happy Birthday Cassandra 💖</title>
-<style>
-/* ===== FOND ET TYPO ===== */
-body {
-  margin: 0;
-  padding: 0;
-  font-family: 'Poppins', sans-serif;
-  background: linear-gradient(135deg, #ff9a9e 0%, #fad0c4 100%);
-  overflow: hidden;
-  color: #fff;
-}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pour Cassandra - Mon Algorithme Préféré</title>
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@300;500&family=Great+Vibes&family=Montserrat:wght@300;600;800&display=swap" rel="stylesheet">
+    
+    <style>
+        /* --- VARIABLES & RESET --- */
+        :root {
+            --bg-color: #0a0005; /* Noir très profond teinté de rouge */
+            --text-color: #e0c0c8; /* Blanc cassé rosé */
+            --accent-red: #d10024; /* Rouge rubis intense */
+            --accent-gold: #d4af37; /* Or élégant */
+            --code-font: 'Fira Code', monospace;
+            --main-font: 'Montserrat', sans-serif;
+            --love-font: 'Great Vibes', cursive;
+        }
 
-/* ===== CŒURS ANIMÉS ===== */
-.heart {
-  position: absolute;
-  width: 20px;
-  height: 20px;
-  background: red;
-  transform: rotate(-45deg);
-  animation: float 6s infinite linear;
-}
-.heart::before,
-.heart::after {
-  content: "";
-  position: absolute;
-  width: 20px;
-  height: 20px;
-  background: red;
-  border-radius: 50%;
-}
-.heart::before {
-  top: -10px;
-  left: 0;
-}
-.heart::after {
-  top: 0;
-  left: 10px;
-}
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-@keyframes float {
-  0% { transform: translateY(0) rotate(-45deg); opacity: 1; }
-  100% { transform: translateY(-1000px) rotate(-45deg); opacity: 0; }
-}
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            font-family: var(--main-font);
+            overflow-x: hidden;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            position: relative;
+        }
 
-/* ===== TEXTE CENTRAL ===== */
-.container {
-  position: relative;
-  z-index: 10;
-  text-align: center;
-  top: 50%;
-  transform: translateY(-50%);
-  padding: 20px;
-}
+        /* --- BACKGROUND ANIMATION (CHAMP DE CŒURS FLOTTANTS) --- */
+        .heart-bg-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+            overflow: hidden;
+        }
 
-h1 {
-  font-size: 3em;
-  margin-bottom: 20px;
-  text-shadow: 2px 2px 10px #ff3c6e;
-  animation: pulse 2s infinite;
-}
+        .bg-heart {
+            position: absolute;
+            bottom: -10vh;
+            color: var(--accent-red);
+            opacity: 0.3;
+            animation: floatUp linear infinite;
+        }
 
-p {
-  font-size: 1.2em;
-  line-height: 1.6;
-  max-width: 700px;
-  margin: 0 auto;
-  text-shadow: 1px 1px 6px #ff3c6e;
-}
+        @keyframes floatUp {
+            0% { transform: translateY(0) scale(0.5) rotate(0deg); opacity: 0; }
+            20% { opacity: 0.4; }
+            80% { opacity: 0.2; }
+            100% { transform: translateY(-110vh) scale(1.2) rotate(360deg); opacity: 0; }
+        }
 
-/* ===== ANIMATION TEXTE ===== */
-@keyframes pulse {
-  0% { transform: scale(1); }
-  50% { transform: scale(1.1); }
-  100% { transform: scale(1); }
-}
+        /* --- MAIN CONTAINER & ARCHITECTURE --- */
+        .container {
+            width: 90%;
+            max-width: 800px;
+            margin: 5vh auto;
+            text-align: center;
+            z-index: 2;
+        }
 
-/* ===== EFFET CŒURS MULTIPLES ===== */
-.heart:nth-child(1) { left: 10%; animation-duration: 6s; }
-.heart:nth-child(2) { left: 25%; animation-duration: 8s; animation-delay: 1s; }
-.heart:nth-child(3) { left: 40%; animation-duration: 7s; animation-delay: 2s; }
-.heart:nth-child(4) { left: 55%; animation-duration: 9s; animation-delay: 0.5s; }
-.heart:nth-child(5) { left: 70%; animation-duration: 6s; animation-delay: 1.5s; }
-.heart:nth-child(6) { left: 85%; animation-duration: 10s; animation-delay: 3s; }
+        /* --- HEADER: BIRTHDAY SPECIAL --- */
+        .birthday-header {
+            margin-bottom: 50px;
+            position: relative;
+        }
 
-</style>
+        .geek-intro {
+            font-family: var(--code-font);
+            font-size: 0.9rem;
+            color: var(--accent-gold);
+            margin-bottom: 10px;
+            opacity: 0.8;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .main-title {
+            font-family: var(--main-font);
+            font-weight: 800;
+            font-size: 3rem;
+            line-height: 1.1;
+            background: linear-gradient(45deg, var(--text-color), var(--accent-red));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: pulseGlow 3s infinite alternate;
+        }
+
+        .cassandra-name {
+            font-family: var(--love-font);
+            font-size: 5rem;
+            display: block;
+            color: var(--accent-red);
+            text-shadow: 0 0 15px rgba(209, 0, 36, 0.5);
+            margin-top: -20px;
+        }
+
+        @keyframes pulseGlow {
+            0% { text-shadow: 0 0 5px rgba(224, 192, 200, 0.2); }
+            100% { text-shadow: 0 0 20px rgba(209, 0, 36, 0.6); }
+        }
+
+        /* --- THE MAIN LOVE TERMINAL --- */
+        .love-terminal {
+            background: rgba(20, 5, 10, 0.8);
+            border: 2px solid var(--accent-red);
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 0 30px rgba(209, 0, 36, 0.2);
+            position: relative;
+            overflow: hidden;
+            backdrop-filter: blur(5px);
+            margin-bottom: 60px;
+        }
+
+        .terminal-header {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+        .dot { width: 12px; height: 12px; border-radius: 50%; }
+        .dot.red { background: #ff5f56; }
+        .dot.yellow { background: #ffbd2e; }
+        .dot.green { background: #27c93f; }
+
+        .terminal-body {
+            font-family: var(--code-font);
+            text-align: left;
+            line-height: 1.6;
+        }
+
+        .code-comment { color: #6c757d; font-style: italic; }
+        .code-keyword { color: var(--accent-gold); }
+        .code-string { color: #a8e6cf; }
+        .love-highlight { color: var(--accent-red); font-weight: bold; }
+
+        .typing-text::after {
+            content: '|';
+            animation: blinkCursor 0.8s step-end infinite;
+        }
+        @keyframes blinkCursor { 50% { opacity: 0; } }
+
+        /* --- THE BIG PULSING HEART --- */
+        .central-heart-container {
+            margin: 40px 0;
+            perspective: 1000px;
+        }
+
+        .big-heart {
+            font-size: 8rem;
+            color: var(--accent-red);
+            display: inline-block;
+            animation: heartbeat 1.5s ease-in-out infinite both;
+            filter: drop-shadow(0 0 20px var(--accent-red));
+        }
+
+        @keyframes heartbeat {
+            0% { transform: scale(1); }
+            15% { transform: scale(1.3); }
+            30% { transform: scale(1); }
+            45% { transform: scale(1.15); }
+            60% { transform: scale(1); }
+        }
+
+        /* --- LOVE SNIPPETS GRID (Data Blocks) --- */
+        .snippets-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 25px;
+            margin-top: 50px;
+        }
+
+        .snippet-card {
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 10px;
+            padding: 20px;
+            border-left: 4px solid var(--accent-gold);
+            text-align: left;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .snippet-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 20px -10px rgba(212, 175, 55, 0.3);
+            background: rgba(255, 255, 255, 0.07);
+        }
+
+        .snippet-icon {
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+        }
+        
+        .snippet-text {
+            font-family: var(--main-font);
+            font-weight: 600;
+            font-size: 0.95rem;
+        }
+
+        .snippet-sub {
+            font-family: var(--code-font);
+            font-size: 0.7rem;
+            color: var(--accent-gold);
+            opacity: 0.7;
+            margin-top: 5px;
+        }
+
+        /* --- FOOTER --- */
+        footer {
+            margin-top: 80px;
+            margin-bottom: 30px;
+            font-family: var(--code-font);
+            font-size: 0.8rem;
+            color: var(--accent-gold);
+        }
+        
+        .final-signature {
+             font-family: var(--love-font);
+             font-size: 2rem;
+             color: var(--accent-red);
+        }
+
+        /* --- RESPONSIVE --- */
+        @media (max-width: 600px) {
+            .main-title { font-size: 2.2rem; }
+            .cassandra-name { font-size: 4rem; }
+            .love-terminal { padding: 20px; }
+            .big-heart { font-size: 6rem; }
+        }
+    </style>
 </head>
 <body>
 
-<!-- CŒURS ANIMÉS -->
-<div class="heart"></div>
-<div class="heart"></div>
-<div class="heart"></div>
-<div class="heart"></div>
-<div class="heart"></div>
-<div class="heart"></div>
+    <div class="heart-bg-container">
+        <div class="bg-heart" style="left: 10%; animation-duration: 8s; animation-delay: 0s;">❤</div>
+        <div class="bg-heart" style="left: 30%; animation-duration: 12s; animation-delay: 2s; font-size: 2rem;">❤</div>
+        <div class="bg-heart" style="left: 50%; animation-duration: 10s; animation-delay: 5s;">❤</div>
+        <div class="bg-heart" style="left: 70%; animation-duration: 14s; animation-delay: 1s; font-size: 1.5rem;">❤</div>
+        <div class="bg-heart" style="left: 90%; animation-duration: 9s; animation-delay: 3s;">❤</div>
+        <div class="bg-heart" style="left: 20%; animation-duration: 11s; animation-delay: 7s; font-size: 2.5rem;">❤</div>
+        <div class="bg-heart" style="left: 60%; animation-duration: 13s; animation-delay: 4s;">❤</div>
+        <div class="bg-heart" style="left: 80%; animation-duration: 7s; animation-delay: 6s; font-size: 1.8rem;">❤</div>
+        <div class="bg-heart" style="left: 5%; animation-duration: 15s; animation-delay: 8s;">❤</div>
+    </div>
 
-<!-- TEXTE D'AMOUR CENTRAL -->
-<div class="container">
-  <h1>Happy Birthday Queen Cassandra 💕👑</h1>
-  <p>
-    Cassandra, tu es le soleil dans mes jours sombres, le souffle qui fait battre mon cœur plus fort.  
-    Chaque instant avec toi devient un souvenir magique, chaque sourire que tu me donnes est un trésor que je garde pour toujours.  
-    Tu es mon rêve éveillé, ma réalité préférée, mon infinie douceur.  
-    Aujourd'hui, je célèbre **toi**, mon amour, ma reine, ma vie.  
-    Joyeux anniversaire, et que cette année t'apporte autant de bonheur que tu m'en donnes chaque jour. 💖✨
-  </p>
-</div>
+
+    <div class="container">
+        <header class="birthday-header">
+            <div class="geek-intro">> Initializing Birthday Protocol...</div>
+            <h1 class="main-title">JOYEUX ANNIVERSAIRE</h1>
+            <span class="cassandra-name">Cassandra</span>
+        </header>
+
+        <div class="love-terminal">
+            <div class="terminal-header">
+                <div class="dot red"></div>
+                <div class="dot yellow"></div>
+                <div class="dot green"></div>
+            </div>
+            <div class="terminal-body">
+                <p class="code-comment">// Scan système en cours...</p>
+                <p><span class="code-keyword">const</span> myWorld = <span class="code-string">"Toi"</span>;</p>
+                <p><span class="code-keyword">if</span> (Cassandra === <span class="code-keyword">true</span>) {</p>
+                <p>&nbsp;&nbsp;myHeart.status = <span class="code-string">'OVERCLOCKING'</span>;</p>
+                <p>}</p>
+                <br>
+                <p class="typing-text">
+                    Mon amour, aujourd'hui ton compteur d'années s'incrémente, mais mon amour pour toi dépasse la capacité de stockage de n'importe quel serveur. <span class="love-highlight">Tu es le CSS qui rend ma vie magnifique</span>, le JavaScript qui anime mes journées. Sans toi, je ne suis que du code HTML squelettique et non stylisé. Tu es ma constante préférée dans un monde plein de variables.
+                </p>
+            </div>
+        </div>
+
+        <div class="central-heart-container">
+            <div class="big-heart">❤</div>
+        </div>
+
+        <div class="snippets-grid">
+            <div class="snippet-card" style="border-color: #ff5f56;">
+                <div class="snippet-icon">📡</div>
+                <div class="snippet-text">Quand tu n'es pas là, je suis en "Packet Loss" à 100%.</div>
+                <div class="snippet-sub">Status: Disconnected</div>
+            </div>
+            <div class="snippet-card" style="border-color: #27c93f;">
+                <div class="snippet-icon">🔄</div>
+                <div class="snippet-text">Je suis coincé dans une boucle infinie "While(True) { Love(Cassandra); }".</div>
+                <div class="snippet-sub">Runtime: Eternity</div>
+            </div>
+            <div class="snippet-card" style="border-color: #ffbd2e;">
+                <div class="snippet-icon">🔋</div>
+                <div class="snippet-text">Ton sourire recharge ma batterie plus vite que l'USB-C.</div>
+                <div class="snippet-sub">Power Level: 200%</div>
+            </div>
+            <div class="snippet-card" style="border-color: #d10024;">
+                <div class="snippet-icon">🔐</div>
+                <div class="snippet-text">Tu as les droits "Root" complets sur mon cœur. Accès exclusif.</div>
+                <div class="snippet-sub">Security: Maximum</div>
+            </div>
+             <div class="snippet-card" style="border-color: #a8e6cf;">
+                <div class="snippet-icon">✨</div>
+                <div class="snippet-text">Tu n'es pas une option, tu es ma fonctionnalité principale.</div>
+                <div class="snippet-sub">Core Feature</div>
+            </div>
+             <div class="snippet-card" style="border-color: #d4af37;">
+                <div class="snippet-icon">🚀</div>
+                <div class="snippet-text">Prêt à mettre à jour notre amour vers la version "Forever".</div>
+                <div class="snippet-sub">Update Available</div>
+            </div>
+        </div>
+
+        <footer>
+            <p>> End of transmission_</p>
+            <p>Codé avec 100% d'amour pur par ton geek dévoué.</p>
+            <p class="final-signature">Je t'aime pour toujours.</p>
+        </footer>
+
+    </div>
 
 </body>
 </html>
